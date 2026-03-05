@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shirish Gawai | Data Analyst Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #f0c040;
+      --gold-light: #ffe082;
+      --navy: #0d1b3e;
+      --glass: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.12);
+      --text: #e8eaf6;
+      --muted: rgba(255,255,255,0.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(30,70,150,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(240,192,64,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(10,25,70,0.6) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(10, 18, 48, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 14px 0;
+      z-index: 100;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold) !important;
+      letter-spacing: 0.5px;
+    }
+    .nav-link-custom {
+      color: var(--muted) !important;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.25s;
+      margin-left: 20px;
+    }
+    .nav-link-custom:hover { color: var(--gold) !important; }
+
+    /* Section */
+    .section { padding: 80px 0; position: relative; z-index: 1; }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .profile-img {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 5%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 8px rgba(240,192,64,0.12), 0 8px 32px rgba(0,0,0,0.5);
+      display: block;
+      margin: 0 auto 28px;
+      transition: transform 0.4s ease;
+    }
+    .profile-img:hover { transform: scale(1.04); }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+    .hero-role {
+      font-size: 0.95rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 14px 0 28px;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .hero-contacts a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 12px;
+      transition: color 0.2s;
+    }
+    .hero-contacts a:hover { color: var(--gold); }
+    .hero-contacts i { margin-right: 5px; color: var(--gold); }
+    .btn-resume {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 32px;
+      background: var(--gold);
+      color: #0d1b3e;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(240,192,64,0.3);
+    }
+    .btn-resume:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(240,192,64,0.45);
+      color: #0d1b3e;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+    .section-title-center {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+      width: 100%;
+      margin-bottom: 0;
+    }
+    .gold-line-center {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 10px auto 36px;
+    }
+    .gold-bar {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 8px 0 36px;
+    }
+
+    /* About */
+    #about p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.82);
+      max-width: 820px;
+    }
+
+    /* Skills */
+    #skills { background: rgba(0,0,0,0.25); }
+    .skill-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      height: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-color: rgba(240,192,64,0.3);
+    }
+    .skill-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .skill-card h6 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .skill-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin: 0; }
+
+    /* Project cards */
+    .project-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .project-card .project-body { padding: 24px; }
+    .project-tag {
+      display: inline-block;
+      background: rgba(240,192,64,0.15);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      border: 1px solid rgba(240,192,64,0.3);
+      margin-bottom: 12px;
+    }
+    .project-card h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+    .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 16px;
+      padding: 8px 20px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-github:hover { background: var(--gold); color: var(--navy); }
+
+    /* Education */
+    #education { background: rgba(0,0,0,0.25); }
+    .edu-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .edu-card:hover { transform: translateY(-3px); border-color: rgba(240,192,64,0.35); }
+    .edu-card h6 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .edu-card .inst { font-size: 0.83rem; color: var(--muted); }
+    .edu-badge {
+      background: rgba(240,192,64,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(240,192,64,0.3);
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .edu-year { font-size: 0.75rem; color: var(--muted); text-align: right; margin-top: 5px; }
+
+    /* Contact */
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color 0.25s, transform 0.25s;
+      margin-bottom: 12px;
+    }
+    .contact-link:hover { border-color: var(--gold); transform: translateX(4px); color: var(--gold); }
+    .contact-link i { font-size: 1.1rem; color: var(--gold); width: 20px; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gold);
+      color: var(--navy);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      z-index: 999;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(240,192,64,0.4);
+      transition: transform 0.2s;
+    }
+    .back-to-top:hover { transform: translateY(-3px); color: var(--navy); }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Shirish Gawai</a>
+      <div class="d-flex flex-wrap">
+        <a href="#about" class="nav-link-custom">About</a>
+        <a href="#skills" class="nav-link-custom">Skills</a>
+        <a href="#projects" class="nav-link-custom">Projects</a>
+        <a href="#fyp" class="nav-link-custom">Final Year Project</a>
+        <a href="#education" class="nav-link-custom">Education</a>
+        <a href="#contact" class="nav-link-custom">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="section" id="hero" data-aos="fade-up">
+    <div class="container">
+      <img src="Profile.jpeg" alt="Profile Photo" class="profile-img" />
+      <h1 class="hero-name">Shirish Babarao Gawai</h1>
+      <p class="hero-role">Data Analyst &nbsp;&middot;&nbsp; Power BI Developer &nbsp;&middot;&nbsp; SQL Developer</p>
+      <div class="hero-contacts">
+        <a href="mailto:deepankargawai0@gmail.com"><i class="bi bi-envelope-fill"></i>Email Me</a>
+        <a href="tel:+919370410967"><i class="bi bi-telephone-fill"></i>+91 9370410967</a>
+        <a href="https://www.linkedin.com/in/shirish-gawai-269b37286/" target="_blank"><i class="bi bi-linkedin"></i>LinkedIn</a>
+        <a href="https://github.com/ShirishGawai" target="_blank"><i class="bi bi-github"></i>GitHub</a>
+      </div>
+      <a href="Shirish_Gawai.pdf" download class="btn-resume">&#8675; Download Resume</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="gold-bar"></div>
+      <p>
+        Analytical and detail-oriented IT graduate with a strong foundation in data analysis, statistical modeling,
+        and data visualization. Proficient in tools and languages such as Python, SQL, and Excel, with hands-on
+        experience transforming raw datasets into actionable insights through academic projects and internships.
+        Eager to contribute to data-driven teams by uncovering trends, building dashboards, and supporting informed
+        business decisions. Passionate about exploring emerging analytics technologies and continuously sharpening
+        problem-solving and storytelling-with-data skills.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="gold-bar"></div>
+      <div class="row g-4">
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card">
+            <span class="skill-icon">🐍</span>
+            <h6>Python for Data Analysis</h6>
+            <p>NumPy, Pandas, Data Cleaning, Data Wrangling, EDA, Matplotlib, Seaborn, Jupyter Notebook</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-card">
+            <span class="skill-icon">🧠</span>
+            <h6>Object Oriented Programming</h6>
+            <p>Abstraction, Inheritance, Encapsulation &amp; Polymorphism</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-card">
+            <span class="skill-icon">🗄️</span>
+            <h6>Database Management using SQL</h6>
+            <p>SQL Queries, Joins, Subqueries, Aggregations, Window Functions, MySQL, Python DB Connectivity</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+          <div class="skill-card">
+            <span class="skill-icon">📊</span>
+            <h6>Data Visualization</h6>
+            <p>Power BI, Matplotlib, Seaborn, Dashboard Creation, Storytelling with Data, KPI Reporting</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-card">
+            <span class="skill-icon">📗</span>
+            <h6>Excel &amp; Spreadsheet Analysis</h6>
+            <p>Pivot Tables, VLOOKUP, Conditional Formatting, Data Validation, Formulas, Power Query</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
+          <div class="skill-card">
+            <span class="skill-icon">🔍</span>
+            <h6>Problem Solving &amp; Analytical Thinking</h6>
+            <p>Identifying data patterns, deriving actionable insights, critical thinking, data-driven recommendations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="gold-bar"></div>
+
+      <div class="project-card mb-4" data-aos="fade-up">
+        <div class="project-body">
+          <span class="project-tag">Power BI &nbsp;&middot;&nbsp; DAX &nbsp;&middot;&nbsp; Power Query</span>
+          <h5>CricMetrics &mdash; IPL Performance Intelligence Dashboard</h5>
+          <p>
+            Designed and developed a comprehensive IPL Analysis Dashboard (2008&ndash;2025) using Power BI,
+            analyzing 73 matches across 10 teams and 14 venues. Features include Season Winner &amp; Runner-Up
+            cards, Orange Cap (Top Run Scorer) and Purple Cap (Top Wicket Taker) player stats, dynamic Points Table,
+            and KPI metrics covering Total 6's (1296), 4's (2251), Centuries (9), Half Centuries (143) &mdash;
+            with interactive season-wise filtering for year-on-year comparison.
+          </p>
+          <a href="https://github.com/ShirishGawai/IPL-Analysis-Dashboard" target="_blank" class="btn-github">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card mb-4" data-aos="fade-up">
+        <div class="project-body">
+          <span class="project-tag">Power BI &nbsp;&middot;&nbsp; DAX &nbsp;&middot;&nbsp; Power Query</span>
+          <h5>Superstore E-Commerce Sales Dashboard</h5>
+          <p>
+            Designed and developed an interactive sales intelligence dashboard using Power BI, analyzing key
+            e-commerce metrics including Rs.438K in total revenue, Rs.37K profit, 5,615 units sold, and Rs.121K AOV.
+            Features KPI summary cards, monthly profit trend analysis, state-wise sales distribution, category
+            breakdown (Clothing 63%, Electronics 21%, Furniture 17%), payment mode split, top customer insights,
+            and sub-category profitability rankings &mdash; all powered by dynamic Quarter and Category filters.
+          </p>
+          <a href="https://github.com/ShirishGawai/Superstore-Ecommerce-Sales-Dashboard" target="_blank" class="btn-github">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final Year Project -->
+  <section class="section" id="fyp" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Final Year Project</h2>
+      <div class="gold-bar"></div>
+
+      <div class="project-card mb-4" data-aos="fade-up">
+        <div class="project-body">
+          <span class="project-tag">Machine Learning &nbsp;&middot;&nbsp; Deep Learning &nbsp;&middot;&nbsp; CNN</span>
+          <h5>Deepfake Video Detection</h5>
+          <p>
+            Developed a machine learning-based system to detect AI-generated deepfake videos with high accuracy.
+            Leveraged deep learning techniques including CNN and frame-level feature extraction to identify facial
+            manipulation artifacts invisible to the human eye. Built to address the growing threat of synthetic media,
+            the model analyzes video sequences in real time &mdash; delivering reliable authenticity classification
+            to support digital trust and media integrity.
+          </p>
+          <a href="https://github.com/ShirishGawai/Deepfake_detection" target="_blank" class="btn-github">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Minor Projects -->
+  <section class="section" id="minor" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Minor Projects</h2>
+      <div class="gold-bar"></div>
+
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card h-100">
+            <div class="project-body">
+              <span class="project-tag">Health &nbsp;&middot;&nbsp; Tracker</span>
+              <h5>Health Challenge Tracker</h5>
+              <p>A web-based application to track and manage personal health challenges, helping users stay consistent with their fitness and wellness goals.</p>
+              <a href="https://github.com/ShirishGawai/Health-Challenge-Tracker" target="_blank" class="btn-github">
+                <i class="bi bi-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card h-100">
+            <div class="project-body">
+              <span class="project-tag">HTML &nbsp;&middot;&nbsp; CSS</span>
+              <h5>Responsive Headphones Landing Page</h5>
+              <p>A fully responsive product landing page for headphones, designed with modern UI/UX principles, clean layout, and mobile-first approach.</p>
+              <a href="https://github.com/ShirishGawai/responsive-headphones-landing-page" target="_blank" class="btn-github">
+                <i class="bi bi-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="gold-bar"></div>
+      <div class="d-flex flex-column gap-3">
+
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="100">
+          <div>
+            <h6>🎓 Bachelor of Computer Science &amp; Engineering (CSE)</h6>
+            <div class="inst">College of Engineering &amp; Technology, Akola (COETA)</div>
+          </div>
+          <div class="text-end">
+            <div class="edu-badge">CGPA: 6.65</div>
+            <div class="edu-year">2021 &ndash; 2025</div>
+          </div>
+        </div>
+
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="150">
+          <div>
+            <h6>📘 HSC (12th)</h6>
+            <div class="inst">RLT College of Science, Akola</div>
+          </div>
+          <div class="text-end">
+            <div class="edu-badge">83.17%</div>
+            <div class="edu-year">2021</div>
+          </div>
+        </div>
+
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="200">
+          <div>
+            <h6>📗 SSC (10th)</h6>
+            <div class="inst">Khandelwal English School, Akola</div>
+          </div>
+          <div class="text-end">
+            <div class="edu-badge">71.80%</div>
+            <div class="edu-year">2019</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact" data-aos="fade-up">
+    <div class="container" style="max-width: 560px;">
+      <h2 class="section-title-center">Let's Connect</h2>
+      <div class="gold-line-center"></div>
+
+      <a href="mailto:deepankargawai0@gmail.com" class="contact-link">
+        <i class="bi bi-envelope-fill"></i>
+        deepankargawai0@gmail.com
+      </a>
+      <a href="tel:+919370410967" class="contact-link">
+        <i class="bi bi-telephone-fill"></i>
+        +91 9370410967
+      </a>
+      <a href="https://www.linkedin.com/in/shirish-gawai-269b37286/" target="_blank" class="contact-link">
+        <i class="bi bi-linkedin"></i>
+        LinkedIn
+      </a>
+      <a href="https://github.com/ShirishGawai" target="_blank" class="contact-link">
+        <i class="bi bi-github"></i>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Shirish Babarao Gawai
+  </footer>
+
+  <!-- Back to Top -->
+  <a href="#hero" class="back-to-top" id="backToTopBtn">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+    const backToTop = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+  </script>
+
+</body>
+</html>
